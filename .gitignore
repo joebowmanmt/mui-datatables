@@ -48,9 +48,6 @@ node_modules
 .eslintcache
 
 # Build Data
-dist/*
-es/*
-lib/*
 
 # Docs
 docs/.next/*

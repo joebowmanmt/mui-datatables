@@ -541,27 +541,27 @@ class MUIDataTable extends React.Component {
           });
         }
 
-        if (typeof column.customBodyRender === 'function') {
-          const rowData = tableData[rowIndex].data;
-          tableMeta = this.getTableMeta(rowIndex, colIndex, rowData, column, data, this.state);
-          const funcResult = column.customBodyRender(value, tableMeta);
+        // if (typeof column.customBodyRender === 'function') {
+        //   const rowData = tableData[rowIndex].data;
+        //   tableMeta = this.getTableMeta(rowIndex, colIndex, rowData, column, data, this.state);
+        //   const funcResult = column.customBodyRender(value, tableMeta);
 
-          if (React.isValidElement(funcResult) && funcResult.props.value) {
-            value = funcResult.props.value;
-          } else if (typeof funcResult === 'string') {
-            value = funcResult;
-          }
-        }
+        //   if (React.isValidElement(funcResult) && funcResult.props.value) {
+        //     value = funcResult.props.value;
+        //   } else if (typeof funcResult === 'string') {
+        //     value = funcResult;
+        //   }
+        // }
 
-        if (filterData[colIndex].indexOf(value) < 0 && !Array.isArray(value)) {
-          filterData[colIndex].push(value);
-        } else if (Array.isArray(value)) {
-          value.forEach(element => {
-            if (filterData[colIndex].indexOf(element) < 0) {
-              filterData[colIndex].push(element);
-            }
-          });
-        }
+        // if (filterData[colIndex].indexOf(value) < 0 && !Array.isArray(value)) {
+        //   filterData[colIndex].push(value);
+        // } else if (Array.isArray(value)) {
+        //   value.forEach(element => {
+        //     if (filterData[colIndex].indexOf(element) < 0) {
+        //       filterData[colIndex].push(element);
+        //     }
+        //   });
+        // }
       }
 
       if (column.filterOptions) {

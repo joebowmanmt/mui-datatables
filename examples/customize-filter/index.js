@@ -106,7 +106,6 @@ class Example extends React.Component {
             },
             update: (filterList, filterPos, index) => {
               console.log('customFilterListOnDelete: ', filterList, filterPos, index);
-
               if (filterPos === 0) {
                 filterList[index].splice(filterPos, 1, '');
               } else if (filterPos === 1) {

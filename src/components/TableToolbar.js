@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -97,6 +97,7 @@ class TableToolbar extends React.Component {
     iconActive: null,
     showSearch: Boolean(this.props.searchText || this.props.options.searchText || this.props.options.searchOpen),
     searchText: this.props.searchText || null,
+    open: false,
   };
 
   componentDidUpdate(prevProps) {
@@ -348,7 +349,7 @@ class TableToolbar extends React.Component {
           )}
           {options.filter && (
             <Popover
-              refExit={this.setActiveIcon.bind(null)}
+              open={this.state.open}
               classes={{ paper: classes.filterPaper }}
               trigger={
                 <Tooltip title={filterTable} disableFocusListener>
@@ -356,7 +357,10 @@ class TableToolbar extends React.Component {
                     data-testid={filterTable + '-iconButton'}
                     aria-label={filterTable}
                     classes={{ root: this.getActiveIcon(classes, 'filter') }}
-                    onClick={this.setActiveIcon.bind(null, 'filter')}>
+                    onClick={() => {
+                      this.setActiveIcon.bind(null, 'filter')();
+                      this.setState({ ...this.state, open: true });
+                    }}>
                     <FilterIcon />
                   </IconButton>
                 </Tooltip>
@@ -369,7 +373,15 @@ class TableToolbar extends React.Component {
                   filterList={filterList}
                   filterData={filterData}
                   onFilterUpdate={filterUpdate}
-                  onFilterReset={resetFilters}
+                  onFilterReset={() => {
+                    this.setActiveIcon.bind(null)();
+                    this.setState({ ...this.state, open: false });
+                    resetFilters();
+                  }}
+                  onFilterApply={() => {
+                    this.setActiveIcon.bind(null)();
+                    this.setState({ ...this.state, open: false });
+                  }}
                 />
               }
             />

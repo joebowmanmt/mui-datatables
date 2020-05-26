@@ -25,7 +25,7 @@ class Popover extends React.Component {
      */
     if (this.state.open === true) {
       this.anchorEl = findDOMNode(this.anchorEl);
-      this.popoverActions.updatePosition();
+      this.popoverActions && this.popoverActions.updatePosition();
     }
   }
 
